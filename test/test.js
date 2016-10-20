@@ -28,3 +28,28 @@ test('test subset', function (t) {
     t.equal(mset0.subsetOf(mset2), false, 'should not be subsets')
     t.end()
 })
+
+test('readme contents', function (t) {
+    const mset = new MSet([0,0,1,1,1,2,3])
+    t.deepEqual(mset.elements(), [0,1,2,3], 'should have right elements')
+    t.equal(mset.multiplicity(0), 2, 'should have right multiplicity')
+    t.equal(mset.multiplicity(1), 3, 'should have right multiplicity')
+    t.equal(mset.multiplicity(2), 1, 'should have right multiplicity')
+    t.equal(mset.multiplicity(3), 1, 'should have right multiplicity')
+    t.equal(mset.multiplicity(4), 0, 'should have right multiplicity')
+
+	mset.subsetOf([0,0,0,1,1,1,1,2,3,4]) //=> true
+
+	const a = new MSet([0,1,1])
+	const b = new MSet([0,1,2])
+	const c = new MSet([0,1,1,2])
+
+	t.ok(a.subsetOf(a)) //=> true
+	t.ok(a.subsetOf(c)) //=> true
+	t.ok(b.subsetOf(c)) //=> true
+
+	t.notOk(a.subsetOf(b)) //=> false
+	t.notOk(b.subsetOf(a)) //=> false
+
+	t.end()
+})
