@@ -1,9 +1,18 @@
-Simple multisets in JS
+[![Build
+Status](https://travis-ci.org/statebox/multiset.svg?branch=master)](https://travis-ci.org/statebox/multiset)
+
+# Wasdis?
+
+Simple ordered natural multisets in JS, for example:
 
 > `[0, 0, 1, 1, 1, 2, 3]` is a multiset with the element `0` appearing
 > twice and `1` appearing thrice.
 
-Usage
+# Usage
+
+`npm install --save statebox/multiset`
+
+Import library
 
 ```js
 const MSet = require('multiset')
