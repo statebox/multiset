@@ -33,7 +33,9 @@ Multiset.prototype.subsetOf = function (otherMSet) {
 		// cannot be subset if some elements are missing from `otherMSet`
 		return false
 	} else {
-		const suffTokens = i => this.multiplicity(i) <= superset.multiplicity(i)
+		function suffTokens (i) {
+			return this.multiplicity(i) <= superset.multiplicity(i)
+		}
 		const allBigger = R.all(suffTokens, this.elements())
 		return allBigger
 	}
