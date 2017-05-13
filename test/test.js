@@ -1,5 +1,8 @@
+const test = require('ava')
+const jsc = require('jsverify')
+const { check } = require('ava-jsverify')
+
 var R = require('ramda')
-var test = require('tape').test
 var MSet = require('../multiset.js')
 
 test('basic multiset functions', function (t) {
@@ -9,12 +12,11 @@ test('basic multiset functions', function (t) {
     t.pass('succesfully created a multiset instance')
 
     t.deepEqual(s.elements(), [0,1,2,3,4], 'should be right elements')
-    t.equal(s.multiplicity(0), 1, 'should be right multiplicity transitions')
-    t.equal(s.multiplicity(1), 2, 'should be right multiplicity transitions')
-    t.equal(s.multiplicity(2), 1, 'should be right multiplicity transitions')
-    t.equal(s.multiplicity(3), 3, 'should be right multiplicity transitions')
-    t.equal(s.multiplicity(4), 1, 'should be right multiplicity transitions')
-    t.end()
+    t.is(s.multiplicity(0), 1, 'should be right multiplicity transitions')
+    t.is(s.multiplicity(1), 2, 'should be right multiplicity transitions')
+    t.is(s.multiplicity(2), 1, 'should be right multiplicity transitions')
+    t.is(s.multiplicity(3), 3, 'should be right multiplicity transitions')
+    t.is(s.multiplicity(4), 1, 'should be right multiplicity transitions')
 })
 
 test('test subset', function (t) {
@@ -23,20 +25,19 @@ test('test subset', function (t) {
     const mset1 = new MSet(nrs)
     const mset2 = new MSet([0,1,1,2,3,3,3])
     t.pass('succesfully create the instances')
-    t.equal(mset0.subsetOf(mset1), true, 'should be subsets')
-    t.equal(mset0.subsetOf(nrs), true, 'should be subsets')
-    t.equal(mset0.subsetOf(mset2), false, 'should not be subsets')
-    t.end()
+    t.is(mset0.subsetOf(mset1), true, 'should be subsets')
+    t.is(mset0.subsetOf(nrs), true, 'should be subsets')
+    t.is(mset0.subsetOf(mset2), false, 'should not be subsets')
 })
 
 test('readme contents', function (t) {
     const mset = new MSet([0,0,1,1,1,2,3])
     t.deepEqual(mset.elements(), [0,1,2,3], 'should have right elements')
-    t.equal(mset.multiplicity(0), 2, 'should have right multiplicity')
-    t.equal(mset.multiplicity(1), 3, 'should have right multiplicity')
-    t.equal(mset.multiplicity(2), 1, 'should have right multiplicity')
-    t.equal(mset.multiplicity(3), 1, 'should have right multiplicity')
-    t.equal(mset.multiplicity(4), 0, 'should have right multiplicity')
+    t.is(mset.multiplicity(0), 2, 'should have right multiplicity')
+    t.is(mset.multiplicity(1), 3, 'should have right multiplicity')
+    t.is(mset.multiplicity(2), 1, 'should have right multiplicity')
+    t.is(mset.multiplicity(3), 1, 'should have right multiplicity')
+    t.is(mset.multiplicity(4), 0, 'should have right multiplicity')
 
 	mset.subsetOf([0,0,0,1,1,1,1,2,3,4]) //=> true
 
@@ -44,12 +45,10 @@ test('readme contents', function (t) {
 	const b = new MSet([0,1,2])
 	const c = new MSet([0,1,1,2])
 
-	t.ok(a.subsetOf(a)) //=> true
-	t.ok(a.subsetOf(c)) //=> true
-	t.ok(b.subsetOf(c)) //=> true
+	t.true(a.subsetOf(a)) //=> true
+	t.true(a.subsetOf(c)) //=> true
+	t.true(b.subsetOf(c)) //=> true
 
-	t.notOk(a.subsetOf(b)) //=> false
-	t.notOk(b.subsetOf(a)) //=> false
-
-	t.end()
+	t.false(a.subsetOf(b)) //=> false
+	t.false(b.subsetOf(a)) //=> false
 })

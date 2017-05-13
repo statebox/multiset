@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/tape test/*.js"
+    "test": "node_modules/.bin/ava test/*.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "ramda": "^0.22.1"
   },
   "devDependencies": {
-    "tape": "^4.6.2"
+    "ava-jsverify": "^1.0.3",
+    "ava": "^0.19.1"
   }
 }
